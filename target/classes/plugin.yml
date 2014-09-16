@@ -1,0 +1,3 @@
+name: BlockRestore
+main: io.github.kazarp.blockrestore.BlockRestore
+version: 2.0
