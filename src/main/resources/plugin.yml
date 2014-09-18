@@ -5,23 +5,23 @@ commands:
    blocksave:
       description: Saves selected blocks with a name
       usage: /<command> [name] or /<command> [name] [x1] [y1] [z1] [x2] [y2] [z2]
-      permission: <plugin name>.save
-      permission-message: You don't have <permission>
+      permission: blockrestore.save
+      permission-message: You don't have <permission> permission
    blockrestore:
       description: Restores an area with a name
       usage: /<command> [name]
-      permission: <plugin name>.restore
-      permission-message: You don't have <permission>
+      permission: blockrestore.restore
+      permission-message: You don't have <permission> permission
    blockremove:
       description: Removes the save of an area
       usage: /<command> [name]
-      permission: <plugin name>.remove
-      permission-message: You don't have <permission>
+      permission: blockrestore.remove
+      permission-message: You don't have <permission> permission
    blocklist:
       description: Lists saved areas
       usage: /<command>
-      permission: <plugin name>.list
-      permission-message: You don't have <permission>
+      permission: blockrestore.list
+      permission-message: You don't have <permission> permission
 permissions:
     blockrestore.*:
         description: Gives access to all BlockRestore commands
