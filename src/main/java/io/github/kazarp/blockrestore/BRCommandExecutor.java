@@ -1,5 +1,6 @@
 package io.github.kazarp.blockrestore;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,23 +17,23 @@ public class BRCommandExecutor implements CommandExecutor {
 			String[] args) {
 		if(equalsCmdName(cmd, "blocksave")){
 			if(!(sender instanceof Player) && args.length != 7){ // Tests if the command format is /blocksave [name] [x1] [y1] [z1] [x2] [y2] [z2]
-				sender.sendMessage("From console, use:\n" +
+				answer(sender, "From console use:\n" +
 			"/blocksave [name] [x1] [y1] [z1] [x2] [y2] [z2]");
 				return true;
 			}
-			sender.sendMessage("You tried to use blocksave cmd!");
+			answer(sender, "You tried to use blocksave cmd!");
 			return true;
 		}
 		else if(equalsCmdName(cmd, "blockrestore")){
-			sender.sendMessage("You tried to use blockrestore cmd!");
+			answer(sender, "You tried to use blockrestore cmd!");
 			return true;
 		}
 		else if(equalsCmdName(cmd, "blockremove")){
-			sender.sendMessage("You tried to use blockremove cmd!");
+			answer(sender, "You tried to use blockremove cmd!");
 			return true;
 		}
 		else if(equalsCmdName(cmd, "blocklist")){
-			sender.sendMessage("You tried to use blocklist cmd!");
+			answer(sender, "You tried to use blocklist cmd!");
 			return true;
 		}
 		return false;
@@ -40,5 +41,7 @@ public class BRCommandExecutor implements CommandExecutor {
 	private boolean equalsCmdName(Command cmd, String name){
 		return cmd.getName().equalsIgnoreCase(name);
 	}
-
+	private void answer(CommandSender sender, String message){
+		sender.sendMessage(ChatColor.GOLD +"[" + plugin.getName() + "] " + ChatColor.GREEN +message);
+	}
 }
