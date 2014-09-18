@@ -15,7 +15,7 @@ public class BRCommandExecutor implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label,
 			String[] args) {
-		if(equalsCmdName(cmd, "blocksave")){
+		if(equalsCmdName(cmd, "blocksave") && sender.hasPermission("blockrestore.save")){
 			if(!(sender instanceof Player) && args.length != 7){ // Tests if the command format is /blocksave [name] [x1] [y1] [z1] [x2] [y2] [z2]
 				answer(sender, "From console use:\n" +
 			"/blocksave [name] [x1] [y1] [z1] [x2] [y2] [z2]");
@@ -24,15 +24,15 @@ public class BRCommandExecutor implements CommandExecutor {
 			answer(sender, "You tried to use blocksave cmd!");
 			return true;
 		}
-		else if(equalsCmdName(cmd, "blockrestore")){
+		else if(equalsCmdName(cmd, "blockrestore") && sender.hasPermission("blockrestore.restore")){
 			answer(sender, "You tried to use blockrestore cmd!");
 			return true;
 		}
-		else if(equalsCmdName(cmd, "blockremove")){
+		else if(equalsCmdName(cmd, "blockremove") && sender.hasPermission("blockrestore.remove")){
 			answer(sender, "You tried to use blockremove cmd!");
 			return true;
 		}
-		else if(equalsCmdName(cmd, "blocklist")){
+		else if(equalsCmdName(cmd, "blocklist") && sender.hasPermission("blockrestore.list")){
 			answer(sender, "You tried to use blocklist cmd!");
 			return true;
 		}
