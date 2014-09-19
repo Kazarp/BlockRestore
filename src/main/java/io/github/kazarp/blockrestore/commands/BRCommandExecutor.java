@@ -20,22 +20,22 @@ public class BRCommandExecutor implements CommandExecutor {
 		if(equalsCmdName(cmd, "blocksave") && sender.hasPermission("blockrestore.save")){
 			if(!(sender instanceof Player) && args.length != 7){ // Tests if the command format is /blocksave [name] [x1] [y1] [z1] [x2] [y2] [z2]
 				Message.send("From console use:\n" +
-			"/blocksave [name] [x1] [y1] [z1] [x2] [y2] [z2]", sender, plugin);
+			"/blocksave [name] [x1] [y1] [z1] [x2] [y2] [z2]", sender);
 				return true;
 			}
-			Message.send("You tried to use blocksave cmd!", sender, plugin);
+			new BlockSaveCMD().run(sender, args);
 			return true;
 		}
 		else if(equalsCmdName(cmd, "blockrestore") && sender.hasPermission("blockrestore.restore")){
-			Message.send("You tried to use blockrestore cmd!", sender, plugin);
+			new BlockRestoreCMD().run(sender, args);
 			return true;
 		}
 		else if(equalsCmdName(cmd, "blockremove") && sender.hasPermission("blockrestore.remove")){
-			Message.send("You tried to use blockremove cmd!", sender, plugin);
+			new BlockRemoveCMD().run(sender, args);
 			return true;
 		}
 		else if(equalsCmdName(cmd, "blocklist") && sender.hasPermission("blockrestore.list")){
-			Message.send("You tried to use blocklist cmd!", sender, plugin);
+			new BlockListCMD().run(sender, args);
 			return true;
 		}
 		return false;
