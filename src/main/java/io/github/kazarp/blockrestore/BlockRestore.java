@@ -1,5 +1,7 @@
 package io.github.kazarp.blockrestore;
 
+import io.github.kazarp.blockrestore.commands.BRCommandExecutor;
+
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 

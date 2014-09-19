@@ -1,4 +1,7 @@
-package io.github.kazarp.blockrestore;
+package io.github.kazarp.blockrestore.commands;
+
+import io.github.kazarp.blockrestore.BlockRestore;
+import io.github.kazarp.blockrestore.Message;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
