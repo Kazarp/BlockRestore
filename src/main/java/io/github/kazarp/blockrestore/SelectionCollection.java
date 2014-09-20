@@ -11,32 +11,22 @@ public class SelectionCollection {
 	
 	public static void setBlock1(Player p, Block b1){
 		for(int i = 0; i < selections.size(); i++){
-			if(selections.get(i).getBlock2().getLocation() == b1.getLocation()){
-				return;
-			}
 			if(Selection.comparePlayers(p, selections.get(i).getPlayer())){
 				selections.get(i).setBlock1(b1);
-				Message.send("You selected the first block", p);
 				return;
 			}
 		}
 		add(p, b1, null);
-		Message.send("You selected the first block", p);
 	}
 	
 	public static void setBlock2(Player p, Block b2){
 		for(int i = 0; i < selections.size(); i++){
 			if(Selection.comparePlayers(p, selections.get(i).getPlayer())){
-				if(selections.get(i).getBlock2().getLocation() == b2.getLocation()){
-					return;
-				}
-				selections.get(i).setBlock1(b2);
-				Message.send("You selected the second block", p);
+				selections.get(i).setBlock2(b2);
 				return;
 			}
 		}
 		add(p, null, b2);
-		Message.send("You selected the second block", p);
 	}
 	
 	// "add" Methods' overloads
