@@ -4,7 +4,7 @@ version: 2.0
 commands:
    blocksave:
       description: Saves selected blocks with a name
-      usage: /<command> [name] or /<command> [name] [x1] [y1] [z1] [x2] [y2] [z2]
+      usage: /<command> [name] or /<command> [name] (world) [x1] [y1] [z1] [x2] [y2] [z2]
       permission: blockrestore.save
       permission-message: You don't have <permission> permission
    blockrestore:

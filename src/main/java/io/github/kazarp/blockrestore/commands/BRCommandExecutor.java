@@ -18,13 +18,13 @@ public class BRCommandExecutor implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label,
 			String[] args) {
 		if(equalsCmdName(cmd, "blocksave") && sender.hasPermission("blockrestore.save")){
-			if(!(sender instanceof Player) && args.length != 7){ // Tests if the command format is /blocksave [name] [x1] [y1] [z1] [x2] [y2] [z2]
+			if(!(sender instanceof Player) && args.length != 8){ // Tests if the command format is /blocksave [name] [x1] [y1] [z1] [x2] [y2] [z2]
 				Message.send("From console use:\n" +
-			"/blocksave [name] [x1] [y1] [z1] [x2] [y2] [z2]", sender);
+			"/blocksave [name] [worldName] [x1] [y1] [z1] [x2] [y2] [z2]", sender);
 				return true;
 			}
-			if(args.length == 1 || args.length == 7){
-				new BlockSaveCMD().run(sender, args);
+			if(args.length == 1 || args.length == 7 || args.length == 8){
+				new BlockSaveCMD(plugin).run(sender, args);
 				return true;
 			}
 		}
