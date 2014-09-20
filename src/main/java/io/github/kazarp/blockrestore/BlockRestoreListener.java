@@ -17,10 +17,6 @@ public class BlockRestoreListener implements Listener {
 			return;
 		event.setCancelled(true);
 		if(event.getAction() == Action.LEFT_CLICK_BLOCK){
-			/*
-			Message.send("You left clicked " + 
-			event.getClickedBlock().getType().toString().toLowerCase().replace('_', ' '), event.getPlayer());
-			*/
 			SelectionCollection.setBlock1(event.getPlayer(), event.getClickedBlock());
 		}
 		else if(event.getAction() == Action.RIGHT_CLICK_BLOCK){

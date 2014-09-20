@@ -13,23 +13,19 @@ public class SelectionCollection {
 		for(int i = 0; i < selections.size(); i++){
 			if(Selection.comparePlayers(p, selections.get(i).getPlayer())){
 				selections.get(i).setBlock1(b1);
-				Message.send("LEFT 0", p);
 				return;
 			}
 		}
 		add(p, b1, null);
-		Message.send("LEFT 1", p);
 	}
 	public static void setBlock2(Player p, Block b2){
 		for(int i = 0; i < selections.size(); i++){
 			if(Selection.comparePlayers(p, selections.get(i).getPlayer())){
 				selections.get(i).setBlock1(b2);
-				Message.send("RIGHT 0", p);
 				return;
 			}
 		}
 		add(p, null, b2);
-		Message.send("RIGHT 1", p);
 	}
 	
 	// "add" Methods' overloads
@@ -42,6 +38,7 @@ public class SelectionCollection {
 	public static void add(Player p, int x1, int y1, int z1, int x2, int y2, int z2){
 		add(new Selection(p, x1, y1, z1, x2 ,y2, z2));
 	}
+	
 	public static void clear(){
 		selections.clear();
 	}
