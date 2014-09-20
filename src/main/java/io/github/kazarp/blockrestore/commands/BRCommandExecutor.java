@@ -23,16 +23,22 @@ public class BRCommandExecutor implements CommandExecutor {
 			"/blocksave [name] [x1] [y1] [z1] [x2] [y2] [z2]", sender);
 				return true;
 			}
-			new BlockSaveCMD().run(sender, args);
-			return true;
+			if(args.length == 1 || args.length == 7){
+				new BlockSaveCMD().run(sender, args);
+				return true;
+			}
 		}
 		else if(equalsCmdName(cmd, "blockrestore") && sender.hasPermission("blockrestore.restore")){
-			new BlockRestoreCMD().run(sender, args);
-			return true;
+			if(args.length == 1){
+				new BlockRestoreCMD().run(sender, args);
+				return true;
+			}
 		}
 		else if(equalsCmdName(cmd, "blockremove") && sender.hasPermission("blockrestore.remove")){
-			new BlockRemoveCMD().run(sender, args);
-			return true;
+			if(args.length == 1){
+				new BlockRemoveCMD().run(sender, args);
+				return true;
+			}
 		}
 		else if(equalsCmdName(cmd, "blocklist") && sender.hasPermission("blockrestore.list")){
 			new BlockListCMD().run(sender, args);
