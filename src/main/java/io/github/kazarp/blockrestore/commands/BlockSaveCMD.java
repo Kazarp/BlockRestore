@@ -1,13 +1,15 @@
 package io.github.kazarp.blockrestore.commands;
 
+import java.util.List;
+
 import io.github.kazarp.blockrestore.Message;
-import io.github.kazarp.blockrestore.SelectionCollection;
 
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 
 public class BlockSaveCMD implements CommandHandler {
@@ -41,8 +43,20 @@ public class BlockSaveCMD implements CommandHandler {
 	}
 	
 	private void SaveBlocks(String name, Player sender) {
-		Block b1 = SelectionCollection.getBlock1(sender);
-		Block b2 = SelectionCollection.getBlock2(sender);
+		List<MetadataValue> values1 = sender.getMetadata("blockrestore-block1");
+		List<MetadataValue> values2 = sender.getMetadata("blockrestore-block2");
+		Block b1 = null;
+		Block b2 = null;
+		for(MetadataValue value : values1){
+			if(value.getOwningPlugin() == plugin && value.value() instanceof Block){
+				b1 = (Block) value.value();
+			}
+		}
+		for(MetadataValue value : values2){
+			if(value.getOwningPlugin() == plugin && value.value() instanceof Block){
+				b2 = (Block) value.value();
+			}
+		}
 		if (b1 == null && b2 == null) {
 			Message.send("You didn't select any block. Use a bone and left/right click a block.", sender); return;
 		}
