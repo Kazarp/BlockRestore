@@ -9,13 +9,15 @@ public class BlockRestore extends JavaPlugin {
 	String[] commands = new String[]{"blocksave", "blockrestore", "blockremove", "blocklist"};
 	@Override
 	public void onEnable() {
-		Message.plugin = this;
+		Message.load(this);
+		SelectionCollection.clear();
 		for(int i = 0; i < commands.length; i++){
 			PluginCommand cmd = this.getCommand(commands[i]);
 			if(cmd != null){
 			cmd.setExecutor(new BRCommandExecutor(this)); 
 			}
 		}
+		getServer().getPluginManager().registerEvents(new BlockRestoreListener(), this);
 	}
 	
 	@Override
