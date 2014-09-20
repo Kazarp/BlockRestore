@@ -44,12 +44,8 @@ public class Selection {
 	public boolean areBlockInTheSameWorld(){
 		return areBlocksInTheSameWorld(block1, block2);
 	}
-	
-	private static String getPlayerID(Player p){
-		return p.getUniqueId().toString();
-	}
 	public static boolean comparePlayers(Player p1, Player p2){
-		return getPlayerID(p1) == getPlayerID(p2);
+		return p1.getUniqueId().compareTo(p2.getUniqueId()) == 0;
 	}
 	public static boolean areBlocksInTheSameWorld(Block b1, Block b2){
 		return b1.getWorld().getUID().toString() == b2.getWorld().getUID().toString();
