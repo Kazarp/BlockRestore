@@ -37,6 +37,7 @@ public class BlockSaveCMD implements CommandHandler {
 	
 	private void SaveBlocks(String name, Block b1, Block b2){
 		//TODO cycle through blocks
+		Message.send(name + " " + b1.getType().toString().toLowerCase().replace('_', ' ') + " " + b2.getType().toString().toLowerCase().replace('_', ' '), plugin.getServer().getPlayerExact("mrbigd151"));
 	}
 	
 	private void SaveBlocks(String name, Player sender) {
