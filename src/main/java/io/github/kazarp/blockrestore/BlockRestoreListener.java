@@ -17,12 +17,23 @@ public class BlockRestoreListener implements Listener {
 
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent event) {
-		if (event.getMaterial() != Material.BONE)
+		String mName = plugin.getConfig().getString("selection-tool");
+		Material selectionMaterial = Material.matchMaterial(mName);
+		if(selectionMaterial == null){
+			String msg = "Bad config! Material named " + mName +" could not be found!";
+			plugin.getLogger().warning(msg);
+			Message.send(msg, event.getPlayer());
+			return;
+		}
+		
+		if (event.getMaterial() != selectionMaterial)
 			return;
 		if (!(event.getPlayer().hasPermission("blockrestore.save")))
 			return;
 		if (!(event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_BLOCK))
 			return;
+		
+		
 		event.setCancelled(true);
 		if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
 			event.getPlayer().setMetadata("blockrestore-block1",

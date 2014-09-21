@@ -2,6 +2,7 @@ package io.github.kazarp.blockrestore;
 
 import io.github.kazarp.blockrestore.commands.BRCommandExecutor;
 
+import org.bukkit.Material;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -20,6 +21,8 @@ public class BlockRestore extends JavaPlugin {
 		}
 		getServer().getPluginManager().registerEvents(
 				new BlockRestoreListener(this), this);
+		getConfig().addDefault("selection-tool", Material.BONE.toString());
+		this.saveDefaultConfig();
 	}
 
 	@Override
