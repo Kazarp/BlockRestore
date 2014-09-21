@@ -29,17 +29,21 @@ public class BlockSaveCMD implements CommandHandler {
 					args[6], (Player) sender);
 		} else if (args.length == 8) {
 			SaveBlocks(args[0], args[1], args[2], args[3], args[4], args[5],
-					args[6], args[7], (Player) sender);
+					args[6], args[7], sender);
 		} else
 			return;
 	}
 
-	private void SaveBlocks(String name, Block b1, Block b2) {
+	private void SaveBlocks(String name, Block b1, Block b2, CommandSender sender) {
 		// TODO cycle through blocks
+		if(!areBlocksInTheSameWorld(b1, b2)){
+			Message.send("Given blocks aren't in the same world!", sender);
+			return;
+		}
 		Message.send(name + " "
 				+ b1.getType().toString().toLowerCase().replace('_', ' ') + " "
 				+ b2.getType().toString().toLowerCase().replace('_', ' '),
-				plugin.getServer().getPlayerExact("mrbigd151"));
+				sender);
 	}
 
 	private void SaveBlocks(String name, Player sender) {
@@ -77,11 +81,11 @@ public class BlockSaveCMD implements CommandHandler {
 					sender);
 			return;
 		}
-		SaveBlocks(name, b1, b2);
+		SaveBlocks(name, b1, b2, sender);
 	}
 
 	private void SaveBlocks(String name, World w, String x1, String y1,
-			String z1, String x2, String y2, String z2, Player sender) {
+			String z1, String x2, String y2, String z2, CommandSender sender) {
 		int x1i, y1i, z1i, x2i, y2i, z2i;
 		try {
 			x1i = Integer.parseInt(x1);
@@ -96,9 +100,9 @@ public class BlockSaveCMD implements CommandHandler {
 					sender);
 			return;
 		}
-		Block b1 = new Location(sender.getWorld(), x1i, y1i, z1i).getBlock();
-		Block b2 = new Location(sender.getWorld(), x2i, y2i, z2i).getBlock();
-		SaveBlocks(name, b1, b2);
+		Block b1 = new Location(w, x1i, y1i, z1i).getBlock();
+		Block b2 = new Location(w, x2i, y2i, z2i).getBlock();
+		SaveBlocks(name, b1, b2, sender);
 	}
 
 	private void SaveBlocks(String name, String x1, String y1, String z1,
@@ -107,7 +111,7 @@ public class BlockSaveCMD implements CommandHandler {
 	}
 
 	private void SaveBlocks(String name, String worldName, String x1,
-			String y1, String z1, String x2, String y2, String z2, Player sender) {
+			String y1, String z1, String x2, String y2, String z2, CommandSender sender) {
 		World w = plugin.getServer().getWorld(worldName);
 		if (w == null) {
 			Message.send("The given world doesn't exist!", sender);
@@ -116,4 +120,7 @@ public class BlockSaveCMD implements CommandHandler {
 		SaveBlocks(name, w, x1, y1, z1, x2, y2, z2, sender);
 	}
 
+	private boolean areBlocksInTheSameWorld(Block b1, Block b2){
+		return b1.getWorld().getUID().compareTo(b2.getWorld().getUID()) == 0;
+	}
 }
