@@ -3,6 +3,7 @@ package io.github.kazarp.blockrestore.commands;
 import java.util.List;
 
 import io.github.kazarp.blockrestore.Message;
+import io.github.kazarp.blockrestore.save.SaveTask;
 
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -44,6 +45,7 @@ public class BlockSaveCMD implements CommandHandler {
 				+ b1.getType().toString().toLowerCase().replace('_', ' ') + " "
 				+ b2.getType().toString().toLowerCase().replace('_', ' '),
 				sender);
+		new SaveTask(b1, b2).runTaskAsynchronously(plugin);
 	}
 
 	private void SaveBlocks(String name, Player sender) {
