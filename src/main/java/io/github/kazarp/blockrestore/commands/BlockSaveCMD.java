@@ -36,7 +36,6 @@ public class BlockSaveCMD implements CommandHandler {
 	}
 
 	private void SaveBlocks(String name, Block b1, Block b2, CommandSender sender) {
-		// TODO cycle through blocks
 		if(!areBlocksInTheSameWorld(b1, b2)){
 			Message.send("Given blocks aren't in the same world!", sender);
 			return;
