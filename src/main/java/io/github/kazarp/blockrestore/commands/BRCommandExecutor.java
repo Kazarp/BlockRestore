@@ -20,15 +20,7 @@ public class BRCommandExecutor implements CommandExecutor {
 			String[] args) {
 		if (equalsCmdName(cmd, "blocksave")
 				&& sender.hasPermission("blockrestore.save")) {
-			if (!(sender instanceof Player) && args.length != 8) { // Tests if
-																	// the
-																	// command
-																	// format is
-																	// /blocksave
-																	// [name]
-																	// [x1] [y1]
-																	// [z1] [x2]
-																	// [y2] [z2]
+			if (!(sender instanceof Player) && args.length != 8) {
 				Message.send(
 						"From console use:\n"
 								+ "/blocksave [name] [worldName] [x1] [y1] [z1] [x2] [y2] [z2]",
