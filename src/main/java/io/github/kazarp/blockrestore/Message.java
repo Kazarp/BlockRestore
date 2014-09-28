@@ -16,14 +16,25 @@ public final class Message {
 	}
 
 	public static void send(String msg, CommandSender sender) {
-		sender.sendMessage(format(msg));
+		sender.sendMessage(format(msg, false));
 	}
 
 	public static void send(String msg, Player p) {
-		p.sendMessage(format(msg));
+		p.sendMessage(format(msg, false));
+	}
+	
+	public static void sendWarn(String msg, CommandSender sender) {
+		sender.sendMessage(format(msg, true));
 	}
 
-	private static String format(String msg) {
+	public static void sendWarn(String msg, Player p) {
+		p.sendMessage(format(msg, true));
+	}
+
+	private static String format(String msg, boolean warn) {
+		if(warn){
+			return prefix + ChatColor.RED + msg;
+		}
 		return prefix + msg;
 	}
 }

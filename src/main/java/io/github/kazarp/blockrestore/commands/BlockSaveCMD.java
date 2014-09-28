@@ -3,7 +3,7 @@ package io.github.kazarp.blockrestore.commands;
 import java.util.List;
 
 import io.github.kazarp.blockrestore.Message;
-import io.github.kazarp.blockrestore.save.SaveTask;
+import io.github.kazarp.blockrestore.tasks.SaveTask;
 
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -37,14 +37,10 @@ public class BlockSaveCMD implements CommandHandler {
 
 	private void SaveBlocks(String name, Block b1, Block b2, CommandSender sender) {
 		if(!areBlocksInTheSameWorld(b1, b2)){
-			Message.send("Given blocks aren't in the same world!", sender);
+			Message.sendWarn("Given blocks aren't in the same world!", sender);
 			return;
 		}
-		Message.send(name + " "
-				+ b1.getType().toString().toLowerCase().replace('_', ' ') + " "
-				+ b2.getType().toString().toLowerCase().replace('_', ' '),
-				sender);
-		new SaveTask(b1, b2).runTaskAsynchronously(plugin);
+		new SaveTask(name, b1, b2, sender, plugin).runTaskAsynchronously(plugin);
 	}
 
 	private void SaveBlocks(String name, Player sender) {
@@ -65,19 +61,19 @@ public class BlockSaveCMD implements CommandHandler {
 			}
 		}
 		if (b1 == null && b2 == null) {
-			Message.send(
+			Message.sendWarn(
 					"You didn't select any block. Use a bone and left/right click a block.",
 					sender);
 			return;
 		}
 		if (b1 == null) {
-			Message.send(
+			Message.sendWarn(
 					"You didn't select the first block. Use a bone and left click a block.",
 					sender);
 			return;
 		}
 		if (b2 == null) {
-			Message.send(
+			Message.sendWarn(
 					"You didn't select the second block. Use a bone and right click a block.",
 					sender);
 			return;
@@ -96,7 +92,7 @@ public class BlockSaveCMD implements CommandHandler {
 			y2i = Integer.parseInt(y2);
 			z2i = Integer.parseInt(z2);
 		} catch (NumberFormatException e) {
-			Message.send(
+			Message.sendWarn(
 					"Bad syntax! Use /<command> [name] (world) [x1] [y1] [z1] [x2] [y2] [z2]",
 					sender);
 			return;
@@ -115,7 +111,7 @@ public class BlockSaveCMD implements CommandHandler {
 			String y1, String z1, String x2, String y2, String z2, CommandSender sender) {
 		World w = plugin.getServer().getWorld(worldName);
 		if (w == null) {
-			Message.send("The given world doesn't exist!", sender);
+			Message.sendWarn("The given world doesn't exist!", sender);
 			return;
 		}
 		SaveBlocks(name, w, x1, y1, z1, x2, y2, z2, sender);
