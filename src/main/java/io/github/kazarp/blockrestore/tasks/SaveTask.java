@@ -1,5 +1,6 @@
 package io.github.kazarp.blockrestore.tasks;
 
+import java.rmi.server.UID;
 import java.util.ArrayList;
 
 import io.github.kazarp.blockrestore.Message;
@@ -47,6 +48,7 @@ public class SaveTask extends BukkitRunnable {
 			plugin.getConfig().set(pathToCurrentBlock + ".Z", blocks[i].getZ());
 			plugin.getConfig().set(pathToCurrentBlock + ".T", blocks[i].getType().toString());
 		}
+		plugin.getConfig().set("saves." + name + ".W", world.getUID().toString());
 		plugin.saveConfig();
 		}
 		catch(Exception e){

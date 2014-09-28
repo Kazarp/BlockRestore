@@ -34,7 +34,7 @@ public class BRCommandExecutor implements CommandExecutor {
 		} else if (equalsCmdName(cmd, "blockrestore")
 				&& sender.hasPermission("blockrestore.restore")) {
 			if (args.length == 1) {
-				new BlockRestoreCMD().run(sender, args);
+				new BlockRestoreCMD(plugin).run(sender, args);
 				return true;
 			}
 		} else if (equalsCmdName(cmd, "blockremove")
